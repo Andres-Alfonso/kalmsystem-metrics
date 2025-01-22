@@ -2,11 +2,7 @@ import mysql from 'mysql2';
 
 // Configura la conexión a la base de datos
 const connection = mysql.createConnection({
-    host: '192.168.0.102',
-    user: 'desarrollo',
-    password: 'vBUKqppYNWsA7R',
-    database: 'devel-myzonego',
-    port: 3307
+    
 });
 
 // Conectar a la base de datos
