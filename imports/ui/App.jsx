@@ -1,10 +1,13 @@
-import React from 'react';
-import { Hello } from './Hello.jsx';
-import { Info } from './Info.jsx';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ProtectedRoute } from './components/ProtectedRoute';
+import Dashboard from './pages/Dashboard';
 
-export const App = () => (
-  <div className="max-w-3xl min-h-screen mx-auto sm:pt-10">
-    <Hello/>
-    <Info/>
-  </div>
-);
+const router = createBrowserRouter([
+  {}
+]);
+
+export const App = () => {
+  return (
+    <RouterProvider router={router}/>    
+  );
+};

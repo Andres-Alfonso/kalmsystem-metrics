@@ -2,6 +2,11 @@ import { Meteor } from 'meteor/meteor';
 import { LinksCollection } from '/imports/api/links';
 import './methods.js';
 
+import jwt from 'jsonwebtoken';
+
+// Configuración
+const JWT_SECRET = 'Y747cAInNEcnjcBtyjDr9RterqI7mtZwQBMsMujQKvbMmRxTbEGN3EDgmVp5FvCX';
+
 async function insertLink({ title, url }) {
   await LinksCollection.insertAsync({ title, url, createdAt: new Date() });
 }
@@ -34,5 +39,28 @@ Meteor.startup(async () => {
   // In order to be fetched in real-time to the clients
   Meteor.publish("links", function () {
     return LinksCollection.find();
+  });
+
+  Meteor.methods({
+    'auth.validateToken'(token) {
+      try {
+        // Verificar el token
+        const decoded = jwt.verify(token, JWT_SECRET);
+        
+        // Validar que el token no haya expirado
+        if (decoded.exp < Date.now() / 1000) {
+          throw new Meteor.Error('401', 'Token expirado');
+        }
+  
+        // Retornar la información decodificada
+        return {
+          userId: decoded.sub,
+          clientId: decoded.client_id,
+          issuer: decoded.iss
+        };
+      } catch (error) {
+        throw new Meteor.Error('401', 'Token inválido');
+      }
+    }
   });
 });

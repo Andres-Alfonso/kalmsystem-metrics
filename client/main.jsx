@@ -1,8 +1,8 @@
-import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { render } from 'react-dom';
-import { App } from '/imports/ui/App';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import '../imports/ui/startup/client/routes'; // Importar rutas configuradas con FlowRouter
 
 Meteor.startup(() => {
-  render(<App/>, document.getElementById('react-target'));
+  // Meteor se encarga de inicializar las rutas
 });
