@@ -3,6 +3,7 @@ import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { mount } from 'react-mounter';
 import { Dashboard } from '../../pages/Dashboard';
 import { ActiveSessions } from '../../components/ActiveSessions';
+import { PrincipalDashboard } from '../../pages/Dashboard/PrincipalDashboard';
 // import { SessionManager } from '../../../../imports/api/client/SessionManager';
 
 // Middleware de autenticación
@@ -33,7 +34,7 @@ FlowRouter.route('/dashboard', {
   name: 'Dashboard',
   // triggersEnter: [requireAuth],
   action() {
-    mount(ActiveSessions);
+    mount(PrincipalDashboard);
   },
 });
 

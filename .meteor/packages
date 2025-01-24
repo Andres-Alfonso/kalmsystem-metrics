@@ -23,3 +23,4 @@ react-meteor-data       # React higher-order component for reactively tracking M
 ostrio:flow-router-extra
 session
 accounts-base
+check
