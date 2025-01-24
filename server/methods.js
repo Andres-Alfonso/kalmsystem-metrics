@@ -3,29 +3,27 @@ import { Meteor } from 'meteor/meteor';
 // import { HTTP } from 'meteor/http';
 import connection from './mysql-conection.js';
 
-const JWT_SECRET = 'Y747cAInNEcnjcBtyjDr9RterqI7mtZwQBMsMujQKvbMmRxTbEGN3EDgmVp5FvCX';
-
 Meteor.methods({
-  'validateToken'(token) {
-    try {
-      // Verificar el token
-      const decoded = jwt.verify(token, JWT_SECRET);
+  // 'validateToken'(token) {
+  //   try {
+  //     // Verificar el token
+  //     const decoded = jwt.verify(token, JWT_SECRET);
       
-      // Verificar si el token ha expirado
-      if (decoded.exp < Date.now() / 1000) {
-        throw new Meteor.Error('token-expired', 'El token ha expirado');
-      }
+  //     // Verificar si el token ha expirado
+  //     if (decoded.exp < Date.now() / 1000) {
+  //       throw new Meteor.Error('token-expired', 'El token ha expirado');
+  //     }
 
-      // Retornar la información decodificada
-      return {
-        userId: decoded.sub,
-        clientId: decoded.client_id,
-        isValid: true
-      };
-    } catch (error) {
-      throw new Meteor.Error('invalid-token', 'Token inválido o expirado');
-    }
-  },
+  //     // Retornar la información decodificada
+  //     return {
+  //       userId: decoded.sub,
+  //       clientId: decoded.client_id,
+  //       isValid: true
+  //     };
+  //   } catch (error) {
+  //     throw new Meteor.Error('invalid-token', 'Token inválido o expirado');
+  //   }
+  // },
 
   'getUserData': function () {
     return new Promise((resolve, reject) => {
